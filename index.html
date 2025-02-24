@@ -5,10 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
+
+    <!-- <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/react/18.0.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/18.0.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 </head>
 
 <body>
-    <h1 style="text-align: center;">Hello World1112223333</h1>
+    <h1 style="text-align: center;">Hello World</h1>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const App = () => {
+            const [count, setCount] = React.useState(0)
+            const [name, setName] = React.useState()
+
+            const increase = () => {
+                setCount(count + 1)
+            }
+
+            const inuptChange = (e) => {
+                console.log(e.target.value)
+                setName(e.target.value)
+            }
+
+            return (
+                <div>
+                    <h1>Hello App</h1>
+                    <button onClick={increase}>{count}</button>
+                    <input onChange={inuptChange} value={name} /> <span>{name}</span>
+                    <br />
+                    <Content message="Click Me Now" value={name} />
+                </div>
+            )
+        }
+
+        // 子组件
+        const Content = ({ message, value }) => {
+            return (<div>
+                <button>{message}</button>
+                <span>{value}</span>
+            </div>)
+        }
+
+        // ReactDOM.render(<App />, document.getElementById('root'))
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<App />)
+    </script>
 </body>
 
 </html>
